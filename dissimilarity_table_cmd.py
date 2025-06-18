@@ -17,11 +17,15 @@ def calc_metrics(load_path, syntax_path, store_path):
     df_syntax['Flows'] = df_syntax['Flows']/10000
     df_syntax.columns = ['error_flows', 'model','ds_1','sample_1']
     #df_syntax['sample_1'] = 'sample-' + df_syntax['sample_1'].astype(str)
-    df_syntax['sample_1'] = 'step-' + df_syntax['sample_1'].astype(str)
-
+    #df_syntax['sample_1'] = 'step-' + df_syntax['sample_1'].astype(str)
+    df_results['sample_1'] = df_results['sample_1'].astype(str).str.replace('step-','')
+    df_results['sample_1'] = df_results['sample_1'].astype(int)
 
     print(df_syntax)
     print(df_results)
+
+    #print(df_syntax[['ds_1', 'model', 'sample_1']])
+    #print(df_results[['ds_1', 'model', 'sample_1']])
 
     #df_results.join(df_syntax, on=['model','ds','step'])
     df_results = df_results.merge(df_syntax, how='inner', left_on=['ds_1', 'model', 'sample_1'], right_on=['ds_1', 'model', 'sample_1'])

@@ -4,26 +4,68 @@
 
 ###REAL DATA###
 
-python3 syn_eval_cmd.py --ds1 "../../Datasets/Queensland_NetFlow/samples/real/NF-UNSW-NB15_0.csv" --ds2 "../../Datasets/Queensland_NetFlow/samples/real/NF-UNSW-NB15_1.csv" --expid 04-real --store_path "test_data/" 
+python3 syn_eval_cmd.py --ds1 "test_samples/real/NF-UNSW-NB15_0.csv" --ds2 "test_samples/real/NF-UNSW-NB15_1.csv" --expid real --store_path "test_data/" 
+python3 syntax_chk_cmd.py --load_path "test_samples/real/NF-UNSW-NB15_0.csv" --ds_id real --store_path "test_data/"
 
-python3 syntax_chk_cmd.py --load_path "../../Datasets/Queensland_NetFlow/samples/real/NF-UNSW-NB15_0.csv" --ds_id 04-real --store_path "test_data/"
+python3 syn_eval_cmd.py --ds1 "test_samples/real/NF-UNSW-NB15_0.csv" --ds2 "test_samples/real/NF-UNSW-NB15_0.csv" --expid real --store_path "test_data/" 
+python3 syntax_chk_cmd.py --load_path "test_samples/real/NF-UNSW-NB15_0.csv" --ds_id real --store_path "test_data/"
 
-python3 syn_aggregate_cmd.py --load_path "test_data/04-real/similarity_raw" --ds_id 04-real --store_path "test_data/04-real_aggregate.csv"
+python3 syn_eval_cmd.py --ds1 "test_samples/real/NF-UNSW-NB15_1.csv" --ds2 "test_samples/real/NF-UNSW-NB15_1.csv" --expid real --store_path "test_data/" 
+python3 syntax_chk_cmd.py --load_path "test_samples/real/NF-UNSW-NB15_1.csv" --ds_id real --store_path "test_data/"
+
+python3 syn_eval_cmd.py --ds1 "test_samples/real/NF-ToN-IoT_0.csv" --ds2 "test_samples/real/NF-ToN-IoT_1.csv" --expid real --store_path "test_data/" 
+python3 syntax_chk_cmd.py --load_path "test_samples/real/NF-ToN-IoT_0.csv" --ds_id real --store_path "test_data/"
+
+python3 syn_eval_cmd.py --ds1 "test_samples/real/NF-ToN-IoT_1.csv" --ds2 "test_samples/real/NF-ToN-IoT_1.csv" --expid real --store_path "test_data/" 
+python3 syntax_chk_cmd.py --load_path "test_samples/real/NF-ToN-IoT_0.csv" --ds_id real --store_path "test_data/"
+
+python3 syn_eval_cmd.py --ds1 "test_samples/real/NF-ToN-IoT_0.csv" --ds2 "test_samples/real/NF-ToN-IoT_0.csv" --expid real --store_path "test_data/" 
+python3 syntax_chk_cmd.py --load_path "test_samples/real/NF-ToN-IoT_1.csv" --ds_id real --store_path "test_data/"
+
+python3 syn_aggregate_cmd.py --load_path "test_data/real/similarity_raw" --ds_id real --store_path "test_data/real_aggregate.csv"
+
+python3 syntax_chk_aggregate_cmd.py --load_path "test_data/real/error_counts/" --store_path "test_data/real_aggregate_syntax.csv"
+
+python3 dissimilarity_table_cmd.py --load_path "test_data/real_aggregate.csv" --syntax_path "test_data/real_aggregate_syntax.csv" --store_path "test_data/real_dissimilarity.csv"
+
 
 
 ### GENERATED DATA ###
 
-python3 syntax_chk_cmd.py --load_path '../../Datasets/Queensland_NetFlow/synthetic/gpt2_data_clean/NF-UNSW-NB15_step-10000.csv' --ds_id 04-gpt2 --store_path "test_data/"
+python3 syntax_chk_cmd.py --load_path "test_samples/gpt2_data_clean/NF-UNSW-NB15_step-10000.csv" --ds_id gpt2 --store_path "test_data/"
+python3 syntax_chk_cmd.py --load_path "test_samples/gpt2_data_clean/NF-UNSW-NB15_step-1000.csv" --ds_id gpt2 --store_path "test_data/"
+python3 syntax_chk_aggregate_cmd.py --load_path "test_data/gpt2/error_counts/" --store_path "test_data/gpt2_aggregate_syntax.csv"
 
-python3 syntax_chk_aggregate_cmd.py --load_path 'test_data/04-gpt2/error_counts/' --store_path "test_data/04-gpt2_aggregate_syntax.csv"
+python3 syn_eval_cmd.py --ds1 "test_data/gpt2/checked_data/NF-UNSW-NB15_step-10000.csv" --ds2 "test_samples/real/NF-UNSW-NB15_0.csv" --expid gpt2 --store_path "test_data/"
+python3 syn_eval_cmd.py --ds1 "test_data/gpt2/checked_data/NF-UNSW-NB15_step-1000.csv" --ds2 "test_samples/real/NF-UNSW-NB15_0.csv" --expid gpt2 --store_path "test_data/" 
+python3 syn_aggregate_cmd.py --load_path "test_data/gpt2/similarity_raw" --ds_id gpt2 --store_path "test_data/gpt2_aggregate.csv"
 
+python3 syntax_chk_cmd.py --load_path "test_samples/wganbin_data_clean/NF-UNSW-NB15_step-10000.csv" --ds_id wganbin --store_path "test_data/"
+python3 syntax_chk_cmd.py --load_path "test_samples/wganbin_data_clean/NF-UNSW-NB15_step-1000.csv" --ds_id wganbin --store_path "test_data/"
+python3 syntax_chk_aggregate_cmd.py --load_path "test_data/wganbin/error_counts/" --store_path "test_data/wganbin_aggregate_syntax.csv"
 
-python3 syn_eval_cmd.py --ds1 "../../Datasets/Queensland_NetFlow/samples/real/NF-UNSW-NB15_0.csv" --ds2 "test_data/04-gpt2/checked_data/NF-UNSW-NB15_step-10000.csv" --expid 04-gpt2 --store_path "test_data/" 
+python3 syn_eval_cmd.py --ds1 "test_data/wganbin/checked_data/NF-UNSW-NB15_step-10000.csv"  --ds2 "test_samples/real/NF-UNSW-NB15_0.csv" --expid wganbin --store_path "test_data/" 
+python3 syn_eval_cmd.py --ds1 "test_data/wganbin/checked_data/NF-UNSW-NB15_step-1000.csv"  --ds2 "test_samples/real/NF-UNSW-NB15_0.csv" --expid wganbin --store_path "test_data/" 
+python3 syn_aggregate_cmd.py --load_path "test_data/wganbin/similarity_raw" --ds_id wganbin --store_path "test_data/wganbin_aggregate.csv"
 
-python3 syn_aggregate_cmd.py --load_path "test_data/04-gpt2/similarity_raw" --ds_id 04-gpt2 --store_path "test_data/04-gpt2_aggregate.csv"
+python3 syntax_chk_cmd.py --load_path "test_samples/gpt2_data_clean/NF-ToN-IoT_step-10000.csv" --ds_id gpt2 --store_path "test_data/"
+python3 syntax_chk_cmd.py --load_path "test_samples/gpt2_data_clean/NF-ToN-IoT_step-1000.csv" --ds_id gpt2 --store_path "test_data/"
+python3 syntax_chk_aggregate_cmd.py --load_path "test_data/gpt2/error_counts/" --store_path "test_data/gpt2_aggregate_syntax.csv"
+
+python3 syn_eval_cmd.py --ds1 "test_data/gpt2/checked_data/NF-ToN-IoT_step-10000.csv" --ds2 "test_samples/real/NF-ToN-IoT_0.csv" --expid gpt2 --store_path "test_data/" 
+python3 syn_eval_cmd.py --ds1 "test_data/gpt2/checked_data/NF-ToN-IoT_step-1000.csv" --ds2 "test_samples/real/NF-ToN-IoT_0.csv" --expid gpt2 --store_path "test_data/" 
+python3 syn_aggregate_cmd.py --load_path "test_data/gpt2/similarity_raw" --ds_id gpt2 --store_path "test_data/gpt2_aggregate.csv"
+
+python3 syntax_chk_cmd.py --load_path "test_samples/wganbin_data_clean/NF-ToN-IoT_step-10000.csv" --ds_id wganbin --store_path "test_data/"
+python3 syntax_chk_cmd.py --load_path "test_samples/wganbin_data_clean/NF-ToN-IoT_step-1000.csv" --ds_id wganbin --store_path "test_data/"
+python3 syntax_chk_aggregate_cmd.py --load_path "test_data/wganbin/error_counts/" --store_path "test_data/wganbin_aggregate_syntax.csv"
+
+python3 syn_eval_cmd.py --ds1 "test_data/wganbin/checked_data/NF-ToN-IoT_step-10000.csv" --ds2 "test_samples/real/NF-ToN-IoT_0.csv" --expid wganbin --store_path "test_data/" 
+python3 syn_eval_cmd.py --ds1 "test_data/wganbin/checked_data/NF-ToN-IoT_step-1000.csv" --ds2 "test_samples/real/NF-ToN-IoT_0.csv" --expid wganbin --store_path "test_data/" 
+python3 syn_aggregate_cmd.py --load_path "test_data/wganbin/similarity_raw" --ds_id wganbin --store_path "test_data/wganbin_aggregate.csv"
 
 ### Dissimlarity
 
-python3 dissimilarity_table_cmd.py --load_path "test_data/04-gpt2_aggregate.csv" --syntax_path "test_data/04-gpt2_aggregate_syntax.csv" --store_path "test_data/04-gpt2_dissimilarity.csv"
+python3 dissimilarity_table_cmd.py --load_path "test_data/gpt2_aggregate.csv" --syntax_path "test_data/gpt2_aggregate_syntax.csv" --store_path "test_data/gpt2_dissimilarity.csv"
 
-python3 plot_results_cmd.py --prefix "test_data/" --save_path_real "test_data/04-real_aggregate.csv" --save_path_syn1 "test_data/04-gpt2_aggregate.csv" --path_syntax_syn1 "test_data/04-gpt2_aggregate_syntax.csv" --save_path_syn2 "test_data/04-wganbin_aggregate.csv" --path_syntax_syn2 "test_data/04-wganbin_aggregate_syntax.csv"
+python3 plot_results_cmd.py --prefix "test_data/" --save_path_real "test_data/real_aggregate.csv" --save_path_syn1 "test_data/gpt2_aggregate.csv" --path_syntax_syn1 "test_data/gpt2_aggregate_syntax.csv" --save_path_syn2 "test_data/wganbin_aggregate.csv" --path_syntax_syn2 "test_data/wganbin_aggregate_syntax.csv"
