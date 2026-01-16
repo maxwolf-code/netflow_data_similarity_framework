@@ -204,6 +204,7 @@ def remove_syntax_erros_files(load_path, store_path, model):
     error_counts_list = []
 
     #for file in files:
+    file = load_path.split('/')[-1]
     if '.txt' in load_path or '.csv' in load_path:
         df = pd.read_csv(load_path, usecols=COLUMNS_TARGET, on_bad_lines='skip', quoting=csv.QUOTE_NONE, nrows=10000, header=0)
         #df = pd.read_csv(path, on_bad_lines='skip', quoting=csv.QUOTE_NONE, nrows=10000, header=0)
@@ -216,7 +217,6 @@ def remove_syntax_erros_files(load_path, store_path, model):
         error_counts_list.append(error_count_dict)
         if (len(clean_df)>0):
             clean_df.columns=COLUMNS_TARGET
-            file = load_path.split('/')[-1]
             clean_df.to_csv(prefix_store_data+file, header=True, index=False)
 
     error_counts = pd.concat(error_counts_list, ignore_index=True, axis=1).T
